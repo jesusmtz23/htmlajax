@@ -4,6 +4,8 @@ var btnActualizar = document.getElementById('btnActualizar');
 //Agregar un event listener para cada click
 btnActualizar.addEventListener('click',actualizar);
 
+actualizar();
+
 function actualizar()
 {
   var xhttp = new XMLHttpRequest();
@@ -14,26 +16,33 @@ function actualizar()
       var response = JSON.parse(this.responseText);
       if (response.status == "ok")
       {
+        document.getElementsByTagName('tbody')[0].innerHTML = "";
         response.students.forEach(function(student)
         {
-          var row = document.createElement("tr");
-          var idCell = document.createElement("td");
-          var firstNameCell = document.createElement("td");
-          var lastNameCell = document.createElement("td");
 
-          var idText = document.createTextNode(student.id);
-          var firstNameText = document.createTextNode(student.first_name);
-          var lastNameText = document.createTextNode(student.last_name);
+          var html="<tr><td>"+student.id+
+          "</td><td>"+student.first_name+
+          "</td><td>"+student.last_name+"</td>";
+          document.getElementsByTagName('tbody')[0].innerHTML += html;
 
-          idCell.appendChild(idText);
-          firstNameCell.appendChild(firstNameText);
-          lastNameCell.appendChild(lastNameText);
-
-          row.appendChild(idCell);
-          row.appendChild(firstNameCell);
-          row.appendChild(lastNameCell);
-
-          document.getElementsByTagName('tbody')[0].appendChild(row);
+          // var row = document.createElement("tr");
+          // var idCell = document.createElement("td");
+          // var firstNameCell = document.createElement("td");
+          // var lastNameCell = document.createElement("td");
+          //
+          // var idText = document.createTextNode(student.id);
+          // var firstNameText = document.createTextNode(student.first_name);
+          // var lastNameText = document.createTextNode(student.last_name);
+          //
+          // idCell.appendChild(idText);
+          // firstNameCell.appendChild(firstNameText);
+          // lastNameCell.appendChild(lastNameText);
+          //
+          // row.appendChild(idCell);
+          // row.appendChild(firstNameCell);
+          // row.appendChild(lastNameCell);
+          //
+          // document.getElementsByTagName('tbody')[0].appendChild(row);
 
         });
       }
