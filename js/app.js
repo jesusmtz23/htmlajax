@@ -16,6 +16,24 @@ function actualizar()
       {
         response.students.forEach(function(student)
         {
+          var row = document.createElement("tr");
+          var idCell = document.createElement("td");
+          var firstNameCell = document.createElement("td");
+          var lastNameCell = document.createElement("td");
+
+          var idText = document.createTextNode(student.id);
+          var firstNameText = document.createTextNode(student.first_name);
+          var lastNameText = document.createTextNode(student.last_name);
+
+          idCell.appendChild(idText);
+          firstNameCell.appendChild(firstNameText);
+          lastNameCell.appendChild(lastNameText);
+
+          row.appendChild(idCell);
+          row.appendChild(firstNameCell);
+          row.appendChild(lastNameCell);
+
+          document.getElementsByTagName('tbody')[0].appendChild(row);
 
         });
       }
